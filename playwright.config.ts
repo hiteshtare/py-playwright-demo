@@ -24,12 +24,12 @@ export default defineConfig({
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: "html",
 
-  snapshotPathTemplate: "./screenshots/{testFilePath}/{arg}{ext}",
+  snapshotPathTemplate: "./screenshots/{testFilePath}/{arg}{_projectName}{ext}",
 
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     screenshot: "on",
-    
+
     /* Base URL to use in actions like `await page.goto('')`. */
     baseURL: "https://yssofindia.org",
 
@@ -40,8 +40,16 @@ export default defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
-      name: "chromium",
+      name: "Desktop",
       use: { ...devices["Desktop Chrome"] },
+    },
+    /* Test against mobile viewports. */
+    {
+      name: "Mobile",
+      use: {
+        ...devices["Desktop Chrome"],
+        viewport: { width: 375, height: 667 },
+      },
     },
     /* Test against mobile viewports. */
     // {

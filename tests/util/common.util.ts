@@ -4,7 +4,7 @@ import { expect, Page } from "@playwright/test";
 import { TEST_CONFIG } from "../config";
 
 export async function captureFullPageScreenshot(page: Page) {
-  await page.screenshot({ fullPage: TEST_CONFIG.fullPage });
+  await page.screenshot({ fullPage: true });
 }
 
 export async function captureANDcompareScreenshots(page: Page, url: string) {
@@ -14,7 +14,7 @@ export async function captureANDcompareScreenshots(page: Page, url: string) {
   await page.goto(url);
 
   await expect(page).toHaveScreenshot(screenshotName, {
-    fullPage: TEST_CONFIG.fullPage,
+    fullPage: true,
   });
 
   // Navigate to Test site and capture screenshot
@@ -22,10 +22,10 @@ export async function captureANDcompareScreenshots(page: Page, url: string) {
     `https://${TEST_CONFIG.authPopUser}:${TEST_CONFIG.authPopPwd}@${TEST_CONFIG.actualSiteURL}/${url}`
   );
   await expect(page).toHaveScreenshot(expectedScreenshotName, {
-    fullPage: TEST_CONFIG.fullPage,
+    fullPage: true,
   });
 
-  await expect(
-    await page.screenshot({ fullPage: TEST_CONFIG.fullPage })
-  ).toMatchSnapshot(screenshotName);
+  await expect(await page.screenshot({ fullPage: true })).toMatchSnapshot(
+    screenshotName
+  );
 }
