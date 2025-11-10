@@ -5,6 +5,6 @@ export const TEST_CONFIG = {
   actualSiteURL: "test.yssofindia.org",
   authPopUser: "yssdev",
   authPopPwd: "Jaiguru@123!",
-  captureScreenshotFor: 'fullPage',
+  fullPage: true,
   waitForScreenshot: 2000,
 };
