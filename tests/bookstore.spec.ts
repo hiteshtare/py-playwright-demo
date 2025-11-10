@@ -5,18 +5,51 @@ const strExpected = "-expected.png";
 const strActual = "-actual.png";
 
 describe("Bookstore ", () => {
-  test("Dashboard vrt", async ({ page }) => {
-    await page.goto("/bookstore");
-    const screenshotName = `dashboard${strExpected}`;
-    const expctedScreenshotName = `dashboard${strActual}`;
+  test("Dashboard", async ({ page }) => {
+    const url = `bookstore`;
+    const screenshotName = `${url}${strExpected}`;
+    const expectedScreenshotName = `${url}${strActual}`;
+    //Navigate to Live site
+    await page.goto(url);
 
     await expect(page).toHaveScreenshot(screenshotName);
 
-    // Navigate to and capture screenshot of the second website
-    await page.goto("https://yssdev:Jaiguru@123!@test.yssofindia.org/bookstore");
-    await expect(page).toHaveScreenshot(expctedScreenshotName);
+    // Navigate to Test site and capture screenshot
+    await page.goto(`https://yssdev:Jaiguru@123!@test.yssofindia.org/${url}`);
+    await expect(page).toHaveScreenshot(expectedScreenshotName);
+
+    await expect(await page.screenshot()).toMatchSnapshot(screenshotName);
+  });
+
+  test("Cart", async ({ page }) => {
+    const url = `cart`;
+    const screenshotName = `${url}${strExpected}`;
+    const expectedScreenshotName = `${url}${strActual}`;
+    //Navigate to Live site
+    await page.goto(url);
+
+    await expect(page).toHaveScreenshot(screenshotName);
+
+    // Navigate to Test site and capture screenshot
+    await page.goto(`https://yssdev:Jaiguru@123!@test.yssofindia.org/${url}`);
+    await expect(page).toHaveScreenshot(expectedScreenshotName);
+
+    await expect(await page.screenshot()).toMatchSnapshot(screenshotName);
+  });
+
+  test("My Account", async ({ page }) => {
+    const url = `my-account`;
+    const screenshotName = `${url}${strExpected}`;
+    const expectedScreenshotName = `${url}${strActual}`;
+    //Navigate to Live site
+    await page.goto(url);
+
+    await expect(page).toHaveScreenshot(screenshotName);
+
+    // Navigate to Test site and capture screenshot
+    await page.goto(`https://yssdev:Jaiguru@123!@test.yssofindia.org/${url}`);
+    await expect(page).toHaveScreenshot(expectedScreenshotName);
 
     await expect(await page.screenshot()).toMatchSnapshot(screenshotName);
   });
 });
-
