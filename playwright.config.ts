@@ -28,6 +28,8 @@ export default defineConfig({
 
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
+    screenshot:"on",
+    
     /* Base URL to use in actions like `await page.goto('')`. */
     baseURL: "https://yssofindia.org",
 
