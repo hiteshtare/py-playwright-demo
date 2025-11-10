@@ -6,7 +6,8 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
-/tests/screenshots/
+
+/screenshots/
 
 # Node modules
 node_modules
