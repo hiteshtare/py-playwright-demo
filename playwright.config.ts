@@ -6,9 +6,9 @@ import { loadConfigFromENV } from "./tests/util/common.util";
 /**
  * Read environment variables from file.
  */
-import dotenv from 'dotenv';
-import path from 'path';
-dotenv.config({ path: path.resolve(__dirname, '.env') });
+import dotenv from "dotenv";
+import path from "path";
+dotenv.config({ path: path.resolve(__dirname, `.env.${process.env.NODE_ENV || 'staging'}`) });
 
 // To assign global variables in APP_CONFIG using ENV
 loadConfigFromENV();
@@ -35,9 +35,9 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     screenshot: "on",
-    video:"on",
+    video: "on",
     /* Base URL to use in actions like `await page.goto('')`. */
-    baseURL: "https://yssofindia.org",
+    baseURL: process.env.BASE_URL,
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: "on-first-retry",
   },
