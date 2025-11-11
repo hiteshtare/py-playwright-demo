@@ -1,9 +1,9 @@
-export const TEST_CONFIG = {
+export const APP_CONFIG = {
   //Global settings
   actualSiteURL: "test.yssofindia.org",
-  authPopUser: "yssdev",
+  authPopUser: "",
+  authPopPassword: "",
   waitForScreenshot: 2000,
-  authPopPwd: "Jaiguru@123!",
   strExpected: "-expected.png",
   strActual: "-actual.png",
 };
