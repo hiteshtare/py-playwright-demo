@@ -15,11 +15,15 @@ export function loadConfigFromENV(): void {
 }
 
 export async function navigateToPage(page: Page, url: string) {
+  let finalURL = "";
+
   if (APP_CONFIG.baseURL === "yssofindia.org") {
-    return await page.goto(`https://${APP_CONFIG.baseURL}/${url}`);
+    finalURL = `https://${APP_CONFIG.baseURL}/${url}`;
   } else {
-    return await page.goto(
-      `https://${APP_CONFIG.authPopUser}:${APP_CONFIG.authPopPassword}@${APP_CONFIG.baseURL}/${url}`
-    );
+    finalURL = `https://${APP_CONFIG.authPopUser}:${APP_CONFIG.authPopPassword}@${APP_CONFIG.baseURL}/${url}`;
   }
+  expect.soft(true, `Actual link: https://${APP_CONFIG.authPopUser}:${APP_CONFIG.authPopPassword}@${APP_CONFIG.baseURL}/${url}`).toBeTruthy();
+  expect.soft(true, `Expected link: https://yssofindia.org/${url}`).toBeTruthy();
+  // console.warn(`link: ${finalURL}`);
+  return await page.goto(finalURL);
 }
