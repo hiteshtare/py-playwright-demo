@@ -48,13 +48,13 @@ export default defineConfig({
       use: { ...devices["Desktop Chrome"] },
     },
     /* PY - Test against mobile viewports. */
-    {
-      name: "Mobile",
-      use: {
-        ...devices["Desktop Chrome"],
-        viewport: { width: 375, height: 667 },
-      },
-    },
+    // {
+    //   name: "Mobile",
+    //   use: {
+    //     ...devices["Desktop Chrome"],
+    //     viewport: { width: 375, height: 667 },
+    //   },
+    // },
     /* PY - Test against mobile viewports. */
     // {
     //   name: 'Mobile Chrome',
