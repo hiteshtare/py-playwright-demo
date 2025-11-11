@@ -1,10 +1,9 @@
 import { test } from "@playwright/test";
-import { describe } from "node:test";
 
 //Importing Custom modules
 import { captureANDcompareScreenshots } from "./util/common.util";
 
-describe("Bookstore ", () => {
+test.describe("Bookstore", () => {
   test("Dashboard", async ({ page }) => {
     const url = `bookstore`;
 
