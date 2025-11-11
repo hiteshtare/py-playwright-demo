@@ -47,15 +47,15 @@ export default defineConfig({
       name: "Desktop",
       use: { ...devices["Desktop Chrome"] },
     },
-    /* Test against mobile viewports. */
-    {
-      name: "Mobile",
-      use: {
-        ...devices["Desktop Chrome"],
-        viewport: { width: 375, height: 667 },
-      },
-    },
-    /* Test against mobile viewports. */
+    /* PY - Test against mobile viewports. */
+    // {
+    //   name: "Mobile",
+    //   use: {
+    //     ...devices["Desktop Chrome"],
+    //     viewport: { width: 375, height: 667 },
+    //   },
+    // },
+    /* PY - Test against mobile viewports. */
     // {
     //   name: 'Mobile Chrome',
     //   use: { ...devices['Pixel 5'] },
