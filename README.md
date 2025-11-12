@@ -7,17 +7,9 @@ Demo of Visual Testing with Playwright
 
 #### Steps to run project:
 
-- #1 Navigate to parent folder:
+- Run the following script
 ```bash
-cd ..
-```
-- #2 Give permission to execute to working folder
-```bash
-chmod -R a+x py-playwright-demo/
-```
-- #3 Navigate back to working folder
-```bash
-cd py-playwright-demo/
+./run-baseline-AND-compare.sh
 ```
 #
 - Create baseline from Prod
