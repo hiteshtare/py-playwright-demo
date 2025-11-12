@@ -9,7 +9,9 @@
     "pretest:compare": "npm run allure:clear",
     "test:baseline": "NODE_ENV=release npx playwright test && rm -r screenshots/**",
     "test:compare": "NODE_ENV=staging npx playwright test || npm run posttest:compare",
-    "posttest:compare": "npm run allure:report"
+    "posttest:compare": "npm run allure:report",
+    "test:update-baseline": "NODE_ENV=release npx playwright test --update-snapshots"
+
   },
   "repository": {
     "type": "git",
