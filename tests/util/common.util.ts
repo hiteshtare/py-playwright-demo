@@ -25,5 +25,7 @@ export async function navigateToPage(page: Page, url: string) {
   expect.soft(true, `Actual link: https://${APP_CONFIG.authPopUser}:${APP_CONFIG.authPopPassword}@${APP_CONFIG.baseURL}/${url}`).toBeTruthy();
   expect.soft(true, `Expected link: https://yssofindia.org/${url}`).toBeTruthy();
   // console.warn(`link: ${finalURL}`);
-  return await page.goto(finalURL);
+  return await page.goto(finalURL, {
+    waitUntil: "domcontentloaded",
+  });
 }
