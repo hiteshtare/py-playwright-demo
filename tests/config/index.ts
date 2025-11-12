@@ -1,6 +1,8 @@
 export const APP_CONFIG = {
   //Global settings
   baseURL: "",
-  authPopUser: "",
-  authPopPassword: "",
+  authPopUpUser: "",
+  authPopUpPassword: "",
+  loginEmail: "",
+  loginPassword: "",
 };
