@@ -8,7 +8,9 @@ import { loadConfigFromENV } from "./tests/util/common.util";
  */
 import dotenv from "dotenv";
 import path from "path";
-dotenv.config({ path: path.resolve(__dirname, `.env.${process.env.NODE_ENV || 'staging'}`) });
+dotenv.config({
+  path: path.resolve(__dirname, `.env.${process.env.NODE_ENV || "staging"}`),
+});
 
 // To assign global variables in APP_CONFIG using ENV
 loadConfigFromENV();
