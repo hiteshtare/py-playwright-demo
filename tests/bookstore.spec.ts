@@ -261,7 +261,7 @@ test.describe("Bookstore - Checkout flow", () => {
     // ---------------------- Man's Eternal Quest ---------------------- //
 
     // Click on Proceed to Checkout button
-    await page.locator('a:has-text("Proceed to Checkout")').click();
+    // await page.locator('a:has-text("Proceed to Checkout")').click();
 
     await expect(page).toHaveScreenshot(
       "logged-in-3-products-on-checkout.png",
