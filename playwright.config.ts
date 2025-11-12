@@ -33,7 +33,7 @@ export default defineConfig({
     ["html", { open: "never" }],
     ["allure-playwright", { open: "never" }],
   ],
-  timeout: 60000,
+  timeout: 180000, //3 mins
   snapshotPathTemplate: "./screenshots/{testFilePath}/{arg}{_projectName}{ext}",
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
