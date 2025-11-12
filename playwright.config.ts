@@ -36,7 +36,7 @@ export default defineConfig({
   snapshotPathTemplate: "./screenshots/{testFilePath}/{arg}{_projectName}{ext}",
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
-    screenshot: { mode:"on",  fullPage: true },
+    screenshot: { mode: "on", fullPage: true },
     video: "on",
     /* Base URL to use in actions like `await page.goto('')`. */
     baseURL: process.env.BASE_URL,
