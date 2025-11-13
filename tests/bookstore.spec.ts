@@ -98,9 +98,7 @@ test.describe("Bookstore - Checkout flow", () => {
     await page.locator('button:has-text("Add to cart")').click();
 
     // Click on Proceed to Checkout button
-    await page.waitForSelector(`a:has-text("Proceed to Checkout")`, {
-      state: "attached",
-    });
+
     await page.locator('a:has-text("Proceed to Checkout")').click();
 
     await expect(page).toHaveScreenshot("aoy-hindi-2-qty-on-checkout.png", {
@@ -130,9 +128,7 @@ test.describe("Bookstore - Checkout flow", () => {
     await page.locator('button:has-text("Add to cart")').click();
 
     // Click on Proceed to Checkout button
-    await page.waitForSelector(`a:has-text("Proceed to Checkout")`, {
-      state: "attached",
-    });
+
     await page.locator('a:has-text("Proceed to Checkout")').click();
 
     // Click on Login Now button
@@ -179,9 +175,7 @@ test.describe("Bookstore - Checkout flow", () => {
     await page.locator('button:has-text("Add to cart")').click();
 
     // Click on Proceed to Checkout button
-    await page.waitForSelector(`a:has-text("Proceed to Checkout")`, {
-      state: "attached",
-    });
+
     await page.locator('a:has-text("Proceed to Checkout")').click();
 
     // Click on Login Now button
@@ -254,9 +248,7 @@ test.describe("Bookstore - Checkout flow", () => {
     await page.locator('button:has-text("Add to cart")').click();
 
     // Click on Proceed to Checkout button
-    await page.waitForSelector(`a:has-text("Proceed to Checkout")`, {
-      state: "attached",
-    });
+
     await page.locator('a:has-text("Proceed to Checkout")').click();
 
     // Click on Login Now button
@@ -284,6 +276,10 @@ test.describe("Bookstore - Checkout flow", () => {
 
     // Click on Add to Cart buton
     await page.locator('button:has-text("Add to cart")').click();
+
+    await page.waitForURL(`https://${APP_CONFIG.baseURL}/cart`, {
+      waitUntil: "domcontentloaded",
+    });
     // ---------------------- God Talks with Arjuna ---------------------- //
 
     // ---------------------- Man's Eternal Quest ---------------------- //
@@ -300,6 +296,10 @@ test.describe("Bookstore - Checkout flow", () => {
 
     // Click on Add to Cart buton
     await page.locator('button:has-text("Add to cart")').click();
+
+    await page.waitForURL(`https://${APP_CONFIG.baseURL}/cart`, {
+      waitUntil: "domcontentloaded",
+    });
     // ---------------------- Man's Eternal Quest ---------------------- //
 
     //Increase MEQ to 2 by clicking + icon on Cart page
@@ -311,6 +311,8 @@ test.describe("Bookstore - Checkout flow", () => {
         "//form[@class='woocommerce-cart-form processing']//div[@class='blockUI blockOverlay']"
       )
     ).toBeHidden();
+
+    await page.waitForTimeout(4000);
 
     await expect(page).toHaveScreenshot(
       "MEQ-2-qty-from-3-products-on-cart.png",
@@ -342,9 +344,7 @@ test.describe("Bookstore - Checkout flow", () => {
     await page.locator('button:has-text("Add to cart")').click();
 
     // Click on Proceed to Checkout button
-    await page.waitForSelector(`a:has-text("Proceed to Checkout")`, {
-      state: "attached",
-    });
+
     await page.locator('a:has-text("Proceed to Checkout")').click();
 
     // Click on Login Now button
@@ -372,6 +372,10 @@ test.describe("Bookstore - Checkout flow", () => {
 
     // Click on Add to Cart buton
     await page.locator('button:has-text("Add to cart")').click();
+
+    await page.waitForURL(`https://${APP_CONFIG.baseURL}/cart`, {
+      waitUntil: "domcontentloaded",
+    });
     // ---------------------- God Talks with Arjuna ---------------------- //
 
     // ---------------------- Man's Eternal Quest ---------------------- //
@@ -388,6 +392,10 @@ test.describe("Bookstore - Checkout flow", () => {
 
     // Click on Add to Cart buton
     await page.locator('button:has-text("Add to cart")').click();
+
+    await page.waitForURL(`https://${APP_CONFIG.baseURL}/cart`, {
+      waitUntil: "domcontentloaded",
+    });
     // ---------------------- Man's Eternal Quest ---------------------- //
 
     //Increase MEQ to 2 by clicking + icon on Cart page
@@ -415,6 +423,10 @@ test.describe("Bookstore - Checkout flow", () => {
 
     // Click on Add to Cart buton
     await page.locator('button:has-text("Add to cart")').click();
+
+    await page.waitForURL(`https://${APP_CONFIG.baseURL}/cart`, {
+      waitUntil: "domcontentloaded",
+    });
     // ---------------------- Armrest ---------------------- //
 
     await expect(page).toHaveScreenshot("armrest-from-4-products-on-cart.png", {
@@ -444,9 +456,7 @@ test.describe("Bookstore - Checkout flow", () => {
     await page.locator('button:has-text("Add to cart")').click();
 
     // Click on Proceed to Checkout button
-    await page.waitForSelector(`a:has-text("Proceed to Checkout")`, {
-      state: "attached",
-    });
+
     await page.locator('a:has-text("Proceed to Checkout")').click();
 
     // Click on Login Now button
@@ -474,6 +484,10 @@ test.describe("Bookstore - Checkout flow", () => {
 
     // Click on Add to Cart buton
     await page.locator('button:has-text("Add to cart")').click();
+
+    await page.waitForURL(`https://${APP_CONFIG.baseURL}/cart`, {
+      waitUntil: "domcontentloaded",
+    });
     // ---------------------- God Talks with Arjuna ---------------------- //
 
     // ---------------------- Man's Eternal Quest ---------------------- //
@@ -490,9 +504,14 @@ test.describe("Bookstore - Checkout flow", () => {
 
     // Click on Add to Cart buton
     await page.locator('button:has-text("Add to cart")').click();
+
+    await page.waitForURL(`https://${APP_CONFIG.baseURL}/cart`, {
+      waitUntil: "domcontentloaded",
+    });
     // ---------------------- Man's Eternal Quest ---------------------- //
 
     //Increase MEQ to 2 by clicking + icon on Cart page
+    await expect(page.getByRole("link", { name: "+" }).nth(2)).toBeVisible();
     await page.getByRole("link", { name: "+" }).nth(2).click();
 
     // Wait for the loading spinner to be hidden
@@ -516,12 +535,14 @@ test.describe("Bookstore - Checkout flow", () => {
 
     // Click on Add to Cart buton
     await page.locator('button:has-text("Add to cart")').click();
+
+    await page.waitForURL(`https://${APP_CONFIG.baseURL}/cart`, {
+      waitUntil: "domcontentloaded",
+    });
     // ---------------------- Armrest ---------------------- //
 
     // Click on Proceed to Checkout button
-    await page.waitForSelector(`a:has-text("Proceed to Checkout")`, {
-      state: "attached",
-    });
+
     await page.locator('a:has-text("Proceed to Checkout")').click();
 
     await expect(page).toHaveScreenshot(
@@ -552,9 +573,6 @@ test.describe("Bookstore - Checkout flow", () => {
     await page.locator('button:has-text("Add to cart")').click();
 
     // Click on Proceed to Checkout button
-    await page.waitForSelector(`a:has-text("Proceed to Checkout")`, {
-      state: "attached",
-    });
     await page.locator('a:has-text("Proceed to Checkout")').click();
 
     // Click on Login Now button
@@ -582,6 +600,7 @@ test.describe("Bookstore - Checkout flow", () => {
 
     // Click on Add to Cart buton
     await page.locator('button:has-text("Add to cart")').click();
+
     // ---------------------- God Talks with Arjuna ---------------------- //
 
     // ---------------------- Man's Eternal Quest ---------------------- //
@@ -598,9 +617,14 @@ test.describe("Bookstore - Checkout flow", () => {
 
     // Click on Add to Cart buton
     await page.locator('button:has-text("Add to cart")').click();
+
+    await page.waitForURL(`https://${APP_CONFIG.baseURL}/cart`, {
+      waitUntil: "domcontentloaded",
+    });
     // ---------------------- Man's Eternal Quest ---------------------- //
 
     //Increase MEQ to 2 by clicking + icon on Cart page
+    await expect(page.getByRole("link", { name: "+" }).nth(2)).toBeVisible();
     await page.getByRole("link", { name: "+" }).nth(2).click();
 
     // Wait for the loading spinner to be hidden
@@ -624,12 +648,14 @@ test.describe("Bookstore - Checkout flow", () => {
 
     // Click on Add to Cart buton
     await page.locator('button:has-text("Add to cart")').click();
+
+     await page.waitForURL(`https://${APP_CONFIG.baseURL}/cart`, {
+      waitUntil: "domcontentloaded",
+    });
+
     // ---------------------- Armrest ---------------------- //
 
     // Click on Proceed to Checkout button
-    await page.waitForSelector(`a:has-text("Proceed to Checkout")`, {
-      state: "attached",
-    });
     await page.locator('a:has-text("Proceed to Checkout")').click();
 
     // Click on PayNow to proceed to RazorPoy modal
