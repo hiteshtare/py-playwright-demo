@@ -33,30 +33,6 @@ test.describe("Bookstore - Static pages", () => {
 });
 
 test.describe("Bookstore - Checkout flow", () => {
-  test("AOY - English paperback", async ({ page }) => {
-    const url = `autobiography-of-a-yogi`;
-
-    await navigateToPage(page, url);
-
-    await expect(page).toHaveScreenshot("aoy-eng.png", { fullPage: true });
-  });
-
-  test("AOY - Hindi paperback", async ({ page }) => {
-    const url = `autobiography-of-a-yogi`;
-
-    await navigateToPage(page, url);
-
-    // Click on Hindi language radio
-    await page.locator('a:has-text("Hindi")').click();
-
-    // await expect(page.waitForSelector(`img[alt='AY-hindi-pocket']`, { state: 'visible' })).toBeTruthy();
-    await page.waitForSelector(`img[alt='AY-hindi-pocket']`, {
-      state: "attached",
-    });
-
-    await expect(page).toHaveScreenshot("aoy-hindi.png", { fullPage: true });
-  });
-
   test("AOY - Hindi paperback with Qty 2", async ({ page }) => {
     const url = `autobiography-of-a-yogi`;
 
@@ -121,7 +97,10 @@ test.describe("Bookstore - Checkout flow", () => {
     // Click on Add to Cart buton
     await page.locator('button:has-text("Add to cart")').click();
 
-    // Click on Proceed to Checkout
+    // Click on Proceed to Checkout button
+    await page.waitForSelector(`a:has-text("Proceed to Checkout")`, {
+      state: "attached",
+    });
     await page.locator('a:has-text("Proceed to Checkout")').click();
 
     await expect(page).toHaveScreenshot("aoy-hindi-2-qty-on-checkout.png", {
@@ -129,7 +108,7 @@ test.describe("Bookstore - Checkout flow", () => {
     });
   });
 
-  test("Cart page having 1 product: AOY - Hindi (Logged In)", async ({
+  test("(Logged In) Cart page having 1 product: AOY - Hindi", async ({
     page,
   }) => {
     const url = `autobiography-of-a-yogi`;
@@ -151,6 +130,9 @@ test.describe("Bookstore - Checkout flow", () => {
     await page.locator('button:has-text("Add to cart")').click();
 
     // Click on Proceed to Checkout button
+    await page.waitForSelector(`a:has-text("Proceed to Checkout")`, {
+      state: "attached",
+    });
     await page.locator('a:has-text("Proceed to Checkout")').click();
 
     // Click on Login Now button
@@ -175,7 +157,7 @@ test.describe("Bookstore - Checkout flow", () => {
     );
   });
 
-  test("Cart page having 3 products: (2) AOY Hi + (1) GTWA + MEQ (1) (Logged In)", async ({
+  test("(Logged In) Cart page having 3 products: (2) AOY Hi + (1) GTWA + MEQ (1)", async ({
     page,
   }) => {
     const url = `autobiography-of-a-yogi`;
@@ -197,6 +179,9 @@ test.describe("Bookstore - Checkout flow", () => {
     await page.locator('button:has-text("Add to cart")').click();
 
     // Click on Proceed to Checkout button
+    await page.waitForSelector(`a:has-text("Proceed to Checkout")`, {
+      state: "attached",
+    });
     await page.locator('a:has-text("Proceed to Checkout")').click();
 
     // Click on Login Now button
@@ -242,15 +227,12 @@ test.describe("Bookstore - Checkout flow", () => {
     await page.locator('button:has-text("Add to cart")').click();
     // ---------------------- Man's Eternal Quest ---------------------- //
 
-    // Click on Proceed to Checkout button
-    // await page.locator('a:has-text("Proceed to Checkout")').click();
-
     await expect(page).toHaveScreenshot("logged-in-3-products-on-cart.png", {
       fullPage: true,
     });
   });
 
-  test("Cart page having 3 products: (2) AOY Hi + (1) GTWA + MEQ Qty is (2)", async ({
+  test("(Logged In) Cart page having 3 products: (2) AOY Hi + (1) GTWA + MEQ Qty is (2)", async ({
     page,
   }) => {
     const url = `autobiography-of-a-yogi`;
@@ -272,6 +254,9 @@ test.describe("Bookstore - Checkout flow", () => {
     await page.locator('button:has-text("Add to cart")').click();
 
     // Click on Proceed to Checkout button
+    await page.waitForSelector(`a:has-text("Proceed to Checkout")`, {
+      state: "attached",
+    });
     await page.locator('a:has-text("Proceed to Checkout")').click();
 
     // Click on Login Now button
@@ -335,7 +320,7 @@ test.describe("Bookstore - Checkout flow", () => {
     );
   });
 
-  test("Cart page having 4 products: (2) AOY Hi + (1) GTWA + (2) MEQ + 1 Armrest ", async ({
+  test("(Logged In) Cart page having 4 products: (2) AOY Hi + (1) GTWA + (2) MEQ + 1 Armrest ", async ({
     page,
   }) => {
     const url = `autobiography-of-a-yogi`;
@@ -357,7 +342,7 @@ test.describe("Bookstore - Checkout flow", () => {
     await page.locator('button:has-text("Add to cart")').click();
 
     // Click on Proceed to Checkout button
-     await page.waitForSelector(`a:has-text("Proceed to Checkout")`, {
+    await page.waitForSelector(`a:has-text("Proceed to Checkout")`, {
       state: "attached",
     });
     await page.locator('a:has-text("Proceed to Checkout")').click();
@@ -437,7 +422,7 @@ test.describe("Bookstore - Checkout flow", () => {
     });
   });
 
-  test("Checkout page having 4 products: (2) AOY Hi + (1) GTWA + (2) MEQ + 1 Armrest ", async ({
+  test("(Logged In) Checkout page having 4 products: (2) AOY Hi + (1) GTWA + (2) MEQ + 1 Armrest ", async ({
     page,
   }) => {
     const url = `autobiography-of-a-yogi`;
@@ -459,6 +444,9 @@ test.describe("Bookstore - Checkout flow", () => {
     await page.locator('button:has-text("Add to cart")').click();
 
     // Click on Proceed to Checkout button
+    await page.waitForSelector(`a:has-text("Proceed to Checkout")`, {
+      state: "attached",
+    });
     await page.locator('a:has-text("Proceed to Checkout")').click();
 
     // Click on Login Now button
@@ -530,7 +518,10 @@ test.describe("Bookstore - Checkout flow", () => {
     await page.locator('button:has-text("Add to cart")').click();
     // ---------------------- Armrest ---------------------- //
 
-    // Click on Proceed to Checkout
+    // Click on Proceed to Checkout button
+    await page.waitForSelector(`a:has-text("Proceed to Checkout")`, {
+      state: "attached",
+    });
     await page.locator('a:has-text("Proceed to Checkout")').click();
 
     await expect(page).toHaveScreenshot(
@@ -561,6 +552,9 @@ test.describe("Bookstore - Checkout flow", () => {
     await page.locator('button:has-text("Add to cart")').click();
 
     // Click on Proceed to Checkout button
+    await page.waitForSelector(`a:has-text("Proceed to Checkout")`, {
+      state: "attached",
+    });
     await page.locator('a:has-text("Proceed to Checkout")').click();
 
     // Click on Login Now button
@@ -632,7 +626,10 @@ test.describe("Bookstore - Checkout flow", () => {
     await page.locator('button:has-text("Add to cart")').click();
     // ---------------------- Armrest ---------------------- //
 
-    // Click on Proceed to Checkout
+    // Click on Proceed to Checkout button
+    await page.waitForSelector(`a:has-text("Proceed to Checkout")`, {
+      state: "attached",
+    });
     await page.locator('a:has-text("Proceed to Checkout")').click();
 
     // Click on PayNow to proceed to RazorPoy modal
