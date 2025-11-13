@@ -26,4 +26,4 @@ echo "compare >> Completed successfully!"
 echo "####################### COMPARE #######################"
 # ----------------------------- compare ----------------------------- #
 
-echo "e2e for Bookstore: https://vrt.yssofindia.org/e2e/py-playwright-demo/allure-reports/#"
+echo "e2e for Bookstore: https://vrt.yssofindia.org/e2e/py-playwright-demo/playwright-report/#"
