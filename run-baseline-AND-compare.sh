@@ -1,6 +1,6 @@
 function grant_exec_permissions() {
   cd ..
-  chmod -R a+x py-playwright-demo/
+  chmod -R a+x py-playwright-demo
   cd py-playwright-demo/
 }
 
