@@ -49,6 +49,10 @@ test.describe("Bookstore - Checkout flow", () => {
     // Click on Quantity textbox & update to 2
     await page.locator("input.input-text.qty.text").fill("2");
 
+    await page.evaluate(() => {
+      window.scrollTo(0, 0);
+    });
+    
     await expect(page).toHaveScreenshot("aoy-hindi-2-qty.png", {
       fullPage: true,
     });
@@ -649,7 +653,7 @@ test.describe("Bookstore - Checkout flow", () => {
     // Click on Add to Cart buton
     await page.locator('button:has-text("Add to cart")').click();
 
-     await page.waitForURL(`https://${APP_CONFIG.baseURL}/cart`, {
+    await page.waitForURL(`https://${APP_CONFIG.baseURL}/cart`, {
       waitUntil: "domcontentloaded",
     });
 
