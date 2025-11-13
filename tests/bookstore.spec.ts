@@ -357,6 +357,9 @@ test.describe("Bookstore - Checkout flow", () => {
     await page.locator('button:has-text("Add to cart")').click();
 
     // Click on Proceed to Checkout button
+     await page.waitForSelector(`a:has-text("Proceed to Checkout")`, {
+      state: "attached",
+    });
     await page.locator('a:has-text("Proceed to Checkout")').click();
 
     // Click on Login Now button
@@ -403,6 +406,7 @@ test.describe("Bookstore - Checkout flow", () => {
     // ---------------------- Man's Eternal Quest ---------------------- //
 
     //Increase MEQ to 2 by clicking + icon on Cart page
+    await expect(page.getByRole("link", { name: "+" }).nth(2)).toBeVisible();
     await page.getByRole("link", { name: "+" }).nth(2).click();
 
     // Wait for the loading spinner to be hidden

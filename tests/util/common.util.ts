@@ -24,8 +24,8 @@ export async function navigateToPage(page: Page, url: string) {
   } else {
     finalURL = `https://${APP_CONFIG.authPopUpUser}:${APP_CONFIG.authPopUpPassword}@${APP_CONFIG.baseURL}/${url}`;
   }
-  expect.soft(true, `Actual link: https://${APP_CONFIG.authPopUpUser}:${APP_CONFIG.authPopUpPassword}@${APP_CONFIG.baseURL}/${url}`).toBeTruthy();
-  expect.soft(true, `Expected link: https://yssofindia.org/${url}`).toBeTruthy();
+  expect.soft(true, `Test: https://${APP_CONFIG.authPopUpUser}:${APP_CONFIG.authPopUpPassword}@${APP_CONFIG.baseURL}/${url}`).toBeTruthy();
+  expect.soft(true, `Reference: https://yssofindia.org/${url}`).toBeTruthy();
   // console.warn(`link: ${finalURL}`);
   return await page.goto(finalURL, {
     waitUntil: "domcontentloaded",
