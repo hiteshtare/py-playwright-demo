@@ -77,7 +77,7 @@ test.describe("Bookstore - Checkout flow", () => {
     // Click on Add to Cart buton
     await page.locator('button:has-text("Add to cart")').click();
 
-    await expect(page).toHaveScreenshot("aoy-hindi-2-qty-on-cart.png", {
+    await expect(page).toHaveScreenshot("cart-aoy-hindi-2-qty.png", {
       fullPage: true,
     });
   });
@@ -105,7 +105,7 @@ test.describe("Bookstore - Checkout flow", () => {
 
     await page.locator('a:has-text("Proceed to Checkout")').click();
 
-    await expect(page).toHaveScreenshot("aoy-hindi-2-qty-on-checkout.png", {
+    await expect(page).toHaveScreenshot("checkout-aoy-hindi-2-qty.png", {
       fullPage: true,
     });
   });
@@ -150,7 +150,7 @@ test.describe("Bookstore - Checkout flow", () => {
     });
 
     await expect(page).toHaveScreenshot(
-      "logged-in-aoy-hindi-2-qty-on-checkout.png",
+      "logged-in-checkout-aoy-hindi-2-qty.png",
       {
         fullPage: true,
       }
@@ -225,7 +225,7 @@ test.describe("Bookstore - Checkout flow", () => {
     await page.locator('button:has-text("Add to cart")').click();
     // ---------------------- Man's Eternal Quest ---------------------- //
 
-    await expect(page).toHaveScreenshot("logged-in-3-products-on-cart.png", {
+    await expect(page).toHaveScreenshot("logged-in-cart-3-products.png", {
       fullPage: true,
     });
   });
@@ -319,7 +319,7 @@ test.describe("Bookstore - Checkout flow", () => {
     await page.waitForTimeout(4000);
 
     await expect(page).toHaveScreenshot(
-      "MEQ-2-qty-from-3-products-on-cart.png",
+      "logged-in-cart-3-products-with-MEQ-2qty.png",
       {
         fullPage: true,
       }
@@ -433,7 +433,7 @@ test.describe("Bookstore - Checkout flow", () => {
     });
     // ---------------------- Armrest ---------------------- //
 
-    await expect(page).toHaveScreenshot("armrest-from-4-products-on-cart.png", {
+    await expect(page).toHaveScreenshot("logged-in-cart-4-products-with-armrest.png", {
       fullPage: true,
     });
   });
@@ -550,7 +550,7 @@ test.describe("Bookstore - Checkout flow", () => {
     await page.locator('a:has-text("Proceed to Checkout")').click();
 
     await expect(page).toHaveScreenshot(
-      "armrest-from-4-products-on-checkout.png",
+      "logged-in-checkout-4-products-with-armrest.png",
       {
         fullPage: true,
       }
