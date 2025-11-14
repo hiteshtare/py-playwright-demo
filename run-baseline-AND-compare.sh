@@ -26,4 +26,6 @@ echo "compare >> Completed successfully!"
 echo "####################### COMPARE #######################"
 # ----------------------------- compare ----------------------------- #
 
+npx playwright show-report
+
 echo "e2e for Bookstore: https://vrt.yssofindia.org/e2e/py-playwright-demo/playwright-report/#"

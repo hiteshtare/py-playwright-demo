@@ -25,9 +25,11 @@
   },
   "homepage": "https://github.com/hiteshtare/py-playwright-demo#readme",
   "devDependencies": {
+    "@chromatic-com/playwright": "^0.12.7",
     "@playwright/test": "^1.56.1",
     "@types/node": "^24.10.0",
-    "allure-playwright": "^3.4.2"
+    "allure-playwright": "^3.4.2",
+    "chromatic": "^13.3.3"
   },
   "dependencies": {
     "dotenv": "^17.2.3"

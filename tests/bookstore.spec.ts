@@ -1,4 +1,5 @@
-import { expect, test } from "@playwright/test";
+// import { expect, test } from "@playwright/test";
+import { test, expect } from "@chromatic-com/playwright";
 
 // Import custom config
 import { APP_CONFIG } from "./config";

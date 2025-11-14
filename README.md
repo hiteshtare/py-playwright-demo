@@ -17,10 +17,12 @@ Demo of Visual Testing with Playwright
 - Create baseline from Prod
 ```bash
 npm run test:baseline
+npx chromatic --playwright --project-token=<your-project-token-goes-here>
 ```
 - Compare expected with Prod
 ```bash
 npm run test:compare
+npx chromatic --playwright --project-token=<your-project-token-goes-here>
 ```
 #
 `Cross-verify all results in GUI using Allure Reports`
