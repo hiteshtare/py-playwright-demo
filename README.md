@@ -1,6 +1,8 @@
 # py-playwright-demo
 
-## _Live Demo >> [Allure Reports using Playwright](https://vrt.yssofindia.org/e2e/py-playwright-demo/allure-reports/#)_
+## _Demo >> [Allure Reports using Playwright](https://vrt.yssofindia.org/e2e/py-playwright-demo/allure-reports/#)_
+
+## _Demo >> [Playwright - Default Reporter](https://vrt.yssofindia.org/e2e/py-playwright-demo/playwright-report/#)_
 
 ###  Description 
 Demo of Visual Testing with Playwright
