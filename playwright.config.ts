@@ -2,6 +2,8 @@ import { defineConfig, devices } from "@playwright/test";
 
 //Importing Custom modules
 import { loadConfigFromENV } from "./tests/util/common.util";
+//Importing Custom config
+import { APP_CONFIG } from "./tests/config";
 
 /**
  * Read environment variables from file.
@@ -32,7 +34,16 @@ export default defineConfig({
   reporter: [
     ["list", { open: "never" }],
     ["html", { open: "never" }],
-    ["allure-playwright", { open: "never" }],
+    [
+      "allure-playwright",
+      {
+        open: "never",
+        environmentInfo: {
+          Test: `https://${APP_CONFIG.authPopUpUser}:${APP_CONFIG.authPopUpPassword}@${APP_CONFIG.baseURL}/`,
+          Reference: "https://yssofindia.org/"
+        },
+      },
+    ],
   ],
   timeout: 180000, //3 mins
   snapshotPathTemplate: "./screenshots/{testFilePath}/{arg}{_projectName}{ext}",
