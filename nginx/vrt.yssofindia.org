@@ -14,11 +14,14 @@ server {
  
     server_name vrt.yssofindia.org www.vrt.yssofindia.org;
  
-    #include /var/www/vrt.yssofindia.org/nginx/vrt.yssofindia.org-headers-csp.conf;
-    include /etc/nginx/common/headers-http.conf;
-    include /var/www/vrt.yssofindia.org/nginx/*-return-https-context.conf;
-
-    return 301 https://$host$request_uri;
+     location / {
+        proxy_pass http://localhost:8080; # Forward requests to your Self-hosted VRT 
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
 }
  
 server {
@@ -34,30 +37,15 @@ server {
 
     access_log /var/log/nginx/vrt.yssofindia.org.access.log we_log;
     error_log /var/log/nginx/vrt.yssofindia.org.error.log;
-
-    root /var/www/vrt.yssofindia.org/htdocs;
-    index index.php index.html index.htm;
-
-    #include /etc/nginx/common/acl.conf;
-    #include /etc/nginx/common/7g.conf;
-    #include /etc/nginx/common/6g.conf;
-    include /var/www/vrt.yssofindia.org/nginx/*vrt.yssofindia.org-sockfile.conf;
-    include /etc/nginx/common/vrt.yssofindia.org-compression.conf;
-    include /var/www/vrt.yssofindia.org/nginx/*-realip-context.conf;
-    include /etc/nginx/common/gridpane-realip.conf;
-    #include /var/www/vrt.yssofindia.org/nginx/vrt.yssofindia.org-headers-csp.conf;
-    include /etc/nginx/common/headers-http.conf;
-    include /etc/nginx/common/headers-https.conf;
-    include /etc/nginx/common/headers-html.conf;
-    include /var/www/vrt.yssofindia.org/nginx/*-main-vrt.yssofindia.org-context.conf;
-    include /var/www/vrt.yssofindia.org/nginx/*-main-context.conf;
-    include /etc/nginx/extra.d/*main-context.conf;
-    include /etc/nginx/common/vrt.yssofindia.org-sitemap.conf;
-    include /etc/nginx/common/vrt.yssofindia.org-static.conf;
-    include /etc/nginx/common/vrt.yssofindia.org-wpcommon.conf;
-    include /etc/nginx/common/vrt.yssofindia.org-php.conf;
-    #include /etc/nginx/common/wpsubdir.conf;
-    include /etc/nginx/common/security.conf;
+    
+    location / {
+        proxy_pass http://localhost:8080; # Forward requests to your k8s - eventapi-service 
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
 }
  
 ##GridPane_Prometheus_vHost_End##
