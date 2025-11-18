@@ -6,13 +6,42 @@ import { APP_CONFIG } from "./config";
 //Importing Custom modules
 import { navigateToPage } from "./util/common.util";
 
+import {
+  PlaywrightVisualRegressionTracker,
+  Config,
+} from "@visual-regression-tracker/agent-playwright";
+import { chromium, Browser, Page, BrowserContext } from "@playwright/test";
+
+const config: Config = {
+  apiUrl: "" + process.env.VRT_APIURL, // URL where backend is running 
+  project: "" + process.env.VRT_PROJECT, // Project name or ID
+  apiKey: "" + process.env.VRT_APIKEY, // User apiKey
+  branchName: "" + process.env.VRT_BRANCHNAME, // Current git branch
+  enableSoftAssert: true, // Log errors instead of throwing exceptions
+};
+
+const browserName = chromium.name();
+const vrt = new PlaywrightVisualRegressionTracker(browserName, config);
+
+test.beforeAll(async () => {
+  await vrt.start();
+});
+
+test.afterAll(async () => {
+  await vrt.stop();
+});
+
 test.describe("Bookstore - Static pages", () => {
-  test("Dashboard", async ({ page }) => {
+  test.only("Dashboard", async ({ page }) => {
     const url = `bookstore`;
 
     await navigateToPage(page, url);
 
-    await expect(page).toHaveScreenshot("dashboard.png", { fullPage: true });
+    // await expect(page).toHaveScreenshot("dashboard.png", { fullPage: true });
+
+    // await vrt.start();
+    await vrt.trackPage(page, "dashboard.png");
+    // await vrt.stop();
   });
 
   test("Cart", async ({ page }) => {
@@ -33,7 +62,7 @@ test.describe("Bookstore - Static pages", () => {
 });
 
 test.describe("Bookstore - Checkout flow", () => {
-  test("AOY - Hindi paperback with Qty 2", async ({ page }) => {
+  test.only("AOY - Hindi paperback with Qty 2", async ({ page }) => {
     const url = `autobiography-of-a-yogi`;
 
     await navigateToPage(page, url);
@@ -52,10 +81,12 @@ test.describe("Bookstore - Checkout flow", () => {
     await page.evaluate(() => {
       window.scrollTo(0, 0);
     });
-    
-    await expect(page).toHaveScreenshot("aoy-hindi-2-qty.png", {
-      fullPage: true,
-    });
+
+    // await expect(page).toHaveScreenshot("aoy-hindi-2-qty.png", {
+    //   fullPage: true,
+    // });
+
+    await vrt.trackPage(page, "aoy-hindi-2-qty.png");
   });
 
   test("Cart page having 1 product: AOY - Hindi", async ({ page }) => {
@@ -433,9 +464,12 @@ test.describe("Bookstore - Checkout flow", () => {
     });
     // ---------------------- Armrest ---------------------- //
 
-    await expect(page).toHaveScreenshot("logged-in-cart-4-products-with-armrest.png", {
-      fullPage: true,
-    });
+    await expect(page).toHaveScreenshot(
+      "logged-in-cart-4-products-with-armrest.png",
+      {
+        fullPage: true,
+      }
+    );
   });
 
   test("(Logged In) Checkout page having 4 products: (2) AOY Hi + (1) GTWA + (2) MEQ + 1 Armrest ", async ({
