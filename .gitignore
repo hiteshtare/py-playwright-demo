@@ -19,3 +19,7 @@ node_modules
 # Allure
 allure-reports
 allure-results
+
+# Visual Regression Tracker
+db
+imageUploads

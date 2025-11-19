@@ -44,6 +44,17 @@ export default defineConfig({
         },
       },
     ],
+    // Add Argos reporter.
+    [
+      "@argos-ci/playwright/reporter",
+      {
+        // Upload to Argos on CI only.
+        uploadToArgos: true,
+
+        // Set your Argos token (required if not using GitHub Actions).
+        token: process.env.ARGOS_PROJECT_TOKEN,
+      },
+    ],
   ],
   timeout: 180000, //3 mins
   snapshotPathTemplate: "./screenshots/{testFilePath}/{arg}{_projectName}{ext}",

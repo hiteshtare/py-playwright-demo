@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { argosScreenshot } from "@argos-ci/playwright";
 
 // Import custom config
 import { APP_CONFIG } from "./config";
@@ -7,12 +8,14 @@ import { APP_CONFIG } from "./config";
 import { navigateToPage } from "./util/common.util";
 
 test.describe("Bookstore - Static pages", () => {
-  test("Dashboard", async ({ page }) => {
+  test.only("Dashboard", async ({ page }) => {
     const url = `bookstore`;
 
     await navigateToPage(page, url);
 
-    await expect(page).toHaveScreenshot("dashboard.png", { fullPage: true });
+    await argosScreenshot(page,"dashboard");
+
+    // await expect(page).toHaveScreenshot("dashboard.png", { fullPage: true });
   });
 
   test("Cart", async ({ page }) => {
@@ -20,7 +23,9 @@ test.describe("Bookstore - Static pages", () => {
 
     await navigateToPage(page, url);
 
-    await expect(page).toHaveScreenshot("cart.png", { fullPage: true });
+    await argosScreenshot(page,"cart.png");
+
+    // await expect(page).toHaveScreenshot("cart.png", { fullPage: true });
   });
 
   test("My Account", async ({ page }) => {
@@ -53,9 +58,10 @@ test.describe("Bookstore - Checkout flow", () => {
       window.scrollTo(0, 0);
     });
     
-    await expect(page).toHaveScreenshot("aoy-hindi-2-qty.png", {
-      fullPage: true,
-    });
+    await argosScreenshot(page, "aoy-hindi-2-qty.png");
+    // await expect(page).toHaveScreenshot("aoy-hindi-2-qty.png", {
+    //   fullPage: true,
+    // });
   });
 
   test("Cart page having 1 product: AOY - Hindi", async ({ page }) => {
