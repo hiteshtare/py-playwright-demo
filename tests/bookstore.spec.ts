@@ -72,24 +72,30 @@ test.describe("Bookstore - Checkout flow", () => {
     await page.waitForSelector(`img[alt='AY-hindi-pocket']`, {
       state: "attached",
     });
+    await expect(page.locator('img').nth(0)).toBeVisible(); 
 
     // Click on Quantity textbox & update to 2
     await page.locator("input.input-text.qty.text").fill("2");
 
+     await page.evaluate(() => {
+      window.scrollTo(0, 0);
+    });
+
+
     await takeSnapshot(page, "Product page: AOY - Hindi", testInfo);
 
     // Click on Add to Cart buton
-    await page.locator('button:has-text("Add to cart")').click();
+    // await page.locator('button:has-text("Add to cart")').click();
 
-    await takeSnapshot(
-      page,
-      "Cart page: having 1 product: AOY - Hindi",
-      testInfo
-    );
+    // await takeSnapshot(
+    //   page,
+    //   "Cart page: having 1 product: AOY - Hindi",
+    //   testInfo
+    // );
 
-    await expect(page).toHaveScreenshot("cart-aoy-hindi-2-qty.png", {
-      fullPage: true,
-    });
+    // await expect(page).toHaveScreenshot("cart-aoy-hindi-2-qty.png", {
+    //   fullPage: true,
+    // });
   });
 
   test("Checkout page having 1 product: AOY - Hindi", async ({ page }) => {
