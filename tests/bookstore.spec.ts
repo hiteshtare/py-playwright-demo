@@ -16,7 +16,7 @@ test.describe("Bookstore - Static pages", () => {
     await expect(page).toHaveScreenshot("dashboard.png", { fullPage: true });
   });
 
-  test("Cart", async ({ page }) => {
+  test.only("Cart", async ({ page }) => {
     const url = `cart`;
 
     await navigateToPage(page, url);
