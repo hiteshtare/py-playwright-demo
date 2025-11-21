@@ -59,7 +59,7 @@ test.describe("Bookstore - Checkout flow", () => {
     });
   });
 
-  test.only("Cart page having 1 product: AOY - Hindi", async ({
+  test("Cart page having 1 product: AOY - Hindi", async ({
     page,
   }, testInfo) => {
     const url = `autobiography-of-a-yogi`;
@@ -72,15 +72,14 @@ test.describe("Bookstore - Checkout flow", () => {
     await page.waitForSelector(`img[alt='AY-hindi-pocket']`, {
       state: "attached",
     });
-    await expect(page.locator('img').nth(0)).toBeVisible(); 
+    await expect(page.locator("img").nth(0)).toBeVisible();
 
     // Click on Quantity textbox & update to 2
     await page.locator("input.input-text.qty.text").fill("2");
 
-     await page.evaluate(() => {
+    await page.evaluate(() => {
       window.scrollTo(0, 0);
     });
-
 
     await takeSnapshot(page, "Product page: AOY - Hindi", testInfo);
 
@@ -576,7 +575,9 @@ test.describe("Bookstore - Checkout flow", () => {
     );
   });
 
-  test("RazorPay modal after clicking on PayNow", async ({ page }) => {
+  test.only("RazorPay modal after clicking on PayNow", async ({
+    page,
+  }, testInfo) => {
     const url = `autobiography-of-a-yogi`;
 
     await navigateToPage(page, url);
@@ -584,19 +585,40 @@ test.describe("Bookstore - Checkout flow", () => {
     // Click on Hindi language radio
     await page.locator('a:has-text("Hindi")').click();
 
-    // await expect(page.waitForSelector(`img[alt='AY-hindi-pocket']`, { state: 'visible' })).toBeTruthy();
-    await page.waitForSelector(`img[alt='AY-hindi-pocket']`, {
-      state: "attached",
-    });
+    //wait for 1 sec
+    await page.waitForTimeout(1000);
+
+    await takeSnapshot(page, "#1_Product page: AOY - Hindi", testInfo);
 
     // Click on Quantity textbox & update to 2
     await page.locator("input.input-text.qty.text").fill("2");
 
+    // Scroll to the top of the page
+    await page.evaluate(() => {
+      window.scrollTo(0, 0);
+    });
+
     // Click on Add to Cart buton
     await page.locator('button:has-text("Add to cart")').click();
 
+    await page.waitForURL(`https://${APP_CONFIG.baseURL}/cart`, {
+      waitUntil: "domcontentloaded",
+    });
+
+    await takeSnapshot(page, "#2_Cart page: (2) AOY Hi", testInfo);
+
     // Click on Proceed to Checkout button
     await page.locator('a:has-text("Proceed to Checkout")').click();
+
+    await page.waitForURL(`https://${APP_CONFIG.baseURL}/checkout`, {
+      waitUntil: "domcontentloaded",
+    });
+
+    await takeSnapshot(
+      page,
+      "#3_Checkout page without Login: (2) AOY Hi",
+      testInfo
+    );
 
     // Click on Login Now button
     await page.getByRole("link", { name: "Login Now" }).click();
@@ -611,6 +633,8 @@ test.describe("Bookstore - Checkout flow", () => {
     await page.waitForURL(`https://${APP_CONFIG.baseURL}/checkout`, {
       waitUntil: "domcontentloaded",
     });
+
+    await takeSnapshot(page, "#4_Checkout page: (2) AOY Hi", testInfo);
 
     // ---------------------- God Talks with Arjuna ---------------------- //
     const second_url = `product/god-talks-with-arjuna-the-bhagavad-gita`;
@@ -657,6 +681,8 @@ test.describe("Bookstore - Checkout flow", () => {
       )
     ).toBeHidden();
 
+    await takeSnapshot(page, "#5_Checkout page: (2) AOY Hi + (1) GTWA + (2) MEQ", testInfo);
+
     // ---------------------- Armrest ---------------------- //
     const fourth_url = `/product/armrest-wooden`;
 
@@ -676,6 +702,8 @@ test.describe("Bookstore - Checkout flow", () => {
       waitUntil: "domcontentloaded",
     });
 
+    await takeSnapshot(page, "#6_Checkout page: (2) AOY Hi + (1) GTWA + (2) MEQ + 1 Armrest", testInfo);
+
     // ---------------------- Armrest ---------------------- //
 
     // Click on Proceed to Checkout button
@@ -684,13 +712,19 @@ test.describe("Bookstore - Checkout flow", () => {
     // Click on PayNow to proceed to RazorPoy modal
     await page.locator('button:has-text("PAY NOW")').click();
 
+    //wait for 3 sec
+    await page.waitForTimeout(3000);
+
     // Wait for RazorPoy modal with new Checkout url to load
     await page.waitForURL("**/order-pay/**", {
       waitUntil: "domcontentloaded",
     });
 
-    await expect(page).toHaveScreenshot("razor-pay-modal-after-paynow.png", {
-      fullPage: true,
-    });
+     
+    await takeSnapshot(page, "#7_RazorPay modal after PayNow", testInfo);
+
+    // await expect(page).toHaveScreenshot("razor-pay-modal-after-paynow.png", {
+    //   fullPage: true,
+    // });
   });
 });
