@@ -1,5 +1,5 @@
 // import { expect, test } from "@playwright/test";
-import { test, expect } from "@chromatic-com/playwright";
+import { test, expect, takeSnapshot } from "@chromatic-com/playwright";
 
 // Import custom config
 import { APP_CONFIG } from "./config";
@@ -16,7 +16,7 @@ test.describe("Bookstore - Static pages", () => {
     await expect(page).toHaveScreenshot("dashboard.png", { fullPage: true });
   });
 
-  test.only("Cart", async ({ page }) => {
+  test("Cart", async ({ page }) => {
     const url = `cart`;
 
     await navigateToPage(page, url);
@@ -53,17 +53,18 @@ test.describe("Bookstore - Checkout flow", () => {
     await page.evaluate(() => {
       window.scrollTo(0, 0);
     });
-    
+
     await expect(page).toHaveScreenshot("aoy-hindi-2-qty.png", {
       fullPage: true,
     });
   });
 
-  test("Cart page having 1 product: AOY - Hindi", async ({ page }) => {
+  test.only("Cart page having 1 product: AOY - Hindi", async ({
+    page,
+  }, testInfo) => {
     const url = `autobiography-of-a-yogi`;
 
     await navigateToPage(page, url);
-
     // Click on Hindi language radio
     await page.locator('a:has-text("Hindi")').click();
 
@@ -75,8 +76,16 @@ test.describe("Bookstore - Checkout flow", () => {
     // Click on Quantity textbox & update to 2
     await page.locator("input.input-text.qty.text").fill("2");
 
+    await takeSnapshot(page, "Product page: AOY - Hindi", testInfo);
+
     // Click on Add to Cart buton
     await page.locator('button:has-text("Add to cart")').click();
+
+    await takeSnapshot(
+      page,
+      "Cart page: having 1 product: AOY - Hindi",
+      testInfo
+    );
 
     await expect(page).toHaveScreenshot("cart-aoy-hindi-2-qty.png", {
       fullPage: true,
@@ -434,9 +443,12 @@ test.describe("Bookstore - Checkout flow", () => {
     });
     // ---------------------- Armrest ---------------------- //
 
-    await expect(page).toHaveScreenshot("logged-in-cart-4-products-with-armrest.png", {
-      fullPage: true,
-    });
+    await expect(page).toHaveScreenshot(
+      "logged-in-cart-4-products-with-armrest.png",
+      {
+        fullPage: true,
+      }
+    );
   });
 
   test("(Logged In) Checkout page having 4 products: (2) AOY Hi + (1) GTWA + (2) MEQ + 1 Armrest ", async ({
