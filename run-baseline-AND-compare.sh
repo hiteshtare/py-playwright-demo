@@ -13,7 +13,7 @@ echo ">>> Running baseline"
 npm run test:baseline
 echo "baseline >> Completed successfully!"
 echo "+++ Triggering chromatic build now +++"
-npx chromatic --playwright --project-token=chpt_5a544be663527db --force-rebuild 
+npx chromatic --playwright -t=chpt_5a544be663527db --force-rebuild 
 echo "*** *** *** *** *** *** BASELINE *** *** *** *** *** ***"
 # ----------------------------- baseline ----------------------------- #
 
@@ -26,7 +26,7 @@ echo ">>> Running compare"
 npm run test:compare
 echo "compare >> Completed successfully!"
 echo "+++ Triggering chromatic build now +++"
-npx chromatic --playwright --project-token=chpt_5a544be663527db --force-rebuild 
+npx chromatic --playwright -t=chpt_5a544be663527db --force-rebuild 
 echo "####################### COMPARE #######################"
 # ----------------------------- compare ----------------------------- #
 
