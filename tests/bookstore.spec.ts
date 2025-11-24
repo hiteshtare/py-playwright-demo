@@ -161,6 +161,14 @@ test.describe("Bookstore - Checkout flow", () => {
       waitUntil: "domcontentloaded",
     });
 
+     // Wait for RazorPoy modal with new Checkout url to load
+    await page.waitForSelector(".razorpay-container");
+    await page.waitForSelector(".razorpay-checkout-frame");
+
+    await expect(
+      page.locator("iframe").first().contentFrame().getByTestId("Netbanking")
+    ).toBeVisible();
+    
     await takeSnapshot(page, "#7_RazorPay modal after PayNow", testInfo);
 
     // await expect(page).toHaveScreenshot("razor-pay-modal-after-paynow.png", {
