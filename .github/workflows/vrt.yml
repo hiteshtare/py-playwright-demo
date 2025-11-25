@@ -19,15 +19,4 @@ jobs:
       # Run Playwright tests
       - name: Run Playwright tests
         run: npx playwright test
-      # Upload the test result artifacts
-      - uses: actions/upload-artifact@v2
-        if: failure()
-        with:
-          name: playwright-report
-          path: playwright-report/
-          retention-days: 30
-      - uses: actions/upload-artifact@v2
-        if: failure()
-        with:
-          name: tests
-          path: tests/
+    
