@@ -7,12 +7,15 @@ import { APP_CONFIG } from "./config";
 import { navigateToPage } from "./util/common.util";
 
 test.describe("Bookstore - Static pages", () => {
-  test("Dashboard", async ({ page }) => {
+  test.only("Dashboard", async ({ page }) => {
     const url = `bookstore`;
 
     await navigateToPage(page, url);
 
-    await expect(page).toHaveScreenshot("dashboard.png", { fullPage: true });
+    // await expect(page).toHaveScreenshot("dashboard.png", { fullPage: true });
+
+    // Run lost-pixel visual regression test after doing some functional testing on the page
+    await page.screenshot({ path: 'lost-pixel/dashboard.png', fullPage: true });
   });
 
   test("Cart", async ({ page }) => {

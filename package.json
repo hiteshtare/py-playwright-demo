@@ -27,7 +27,8 @@
   "devDependencies": {
     "@playwright/test": "^1.56.1",
     "@types/node": "^24.10.0",
-    "allure-playwright": "^3.4.2"
+    "allure-playwright": "^3.4.2",
+    "lost-pixel": "^3.22.0"
   },
   "dependencies": {
     "dotenv": "^17.2.3"

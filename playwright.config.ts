@@ -11,7 +11,7 @@ import { APP_CONFIG } from "./tests/config";
 import dotenv from "dotenv";
 import path from "path";
 dotenv.config({
-  path: path.resolve(__dirname, `.env.${process.env.NODE_ENV || "staging"}`),
+  path: path.resolve(__dirname, `.env.${process.env.NODE_ENV || "release"}`),
 });
 
 // To assign global variables in APP_CONFIG using ENV
