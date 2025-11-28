@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { pixeleyeSnapshot } from "@pixeleye/playwright";
 
 // Import custom config
 import { APP_CONFIG } from "./config";
@@ -7,12 +8,15 @@ import { APP_CONFIG } from "./config";
 import { navigateToPage } from "./util/common.util";
 
 test.describe("Bookstore - Static pages", () => {
-  test("Dashboard", async ({ page }) => {
+  test.only("Dashboard", async ({ page }) => {
     const url = `bookstore`;
 
     await navigateToPage(page, url);
 
-    await expect(page).toHaveScreenshot("dashboard.png", { fullPage: true });
+    // await expect(page).toHaveScreenshot("dashboard.png", { fullPage: true });
+    await pixeleyeSnapshot(page, {
+      name: "dashboard",
+    });
   });
 
   test("Cart", async ({ page }) => {
@@ -52,7 +56,7 @@ test.describe("Bookstore - Checkout flow", () => {
     await page.evaluate(() => {
       window.scrollTo(0, 0);
     });
-    
+
     await expect(page).toHaveScreenshot("aoy-hindi-2-qty.png", {
       fullPage: true,
     });
@@ -433,9 +437,12 @@ test.describe("Bookstore - Checkout flow", () => {
     });
     // ---------------------- Armrest ---------------------- //
 
-    await expect(page).toHaveScreenshot("logged-in-cart-4-products-with-armrest.png", {
-      fullPage: true,
-    });
+    await expect(page).toHaveScreenshot(
+      "logged-in-cart-4-products-with-armrest.png",
+      {
+        fullPage: true,
+      }
+    );
   });
 
   test("(Logged In) Checkout page having 4 products: (2) AOY Hi + (1) GTWA + (2) MEQ + 1 Armrest ", async ({

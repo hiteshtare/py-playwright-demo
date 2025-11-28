@@ -25,11 +25,17 @@
   },
   "homepage": "https://github.com/hiteshtare/py-playwright-demo#readme",
   "devDependencies": {
+    "@pixeleye/playwright": "^0.8.5",
     "@playwright/test": "^1.56.1",
     "@types/node": "^24.10.0",
-    "allure-playwright": "^3.4.2"
+    "allure-playwright": "^3.4.2",
+    "pixeleye": "^0.8.8",
+    "typescript": "^5.4.5"
   },
   "dependencies": {
-    "dotenv": "^17.2.3"
+    "dotenv": "^17.2.3",
+    "exec": "^0.2.1",
+    "@pixeleye/playwright": "0.8.5",
+    "playwright": "^1.44.1"
   }
 }
