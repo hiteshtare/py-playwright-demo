@@ -1,8 +1,6 @@
-# py-playwright-demo
+# py-vrt-playwright-english
 
-## _Demo >> [Allure Reports using Playwright](https://vrt.yssofindia.org/e2e/py-playwright-demo/allure-reports/#)_
-
-## _Demo >> [Playwright - Default Reporter](https://vrt.yssofindia.org/e2e/py-playwright-demo/playwright-report/#)_
+## _Demo >> [Visual Regression Tracker Dashboard](http://139.59.33.178/c162b87d-c1d0-4348-a428-17ffb9c1e38b/#)_
 
 ###  Description 
 Demo of Visual Testing with Playwright
@@ -23,4 +21,12 @@ npm run test:baseline
 npm run test:compare
 ```
 #
-`Cross-verify all results in GUI using Allure Reports`
+`VRT .env Config`
+
+#
+```
+VRT_APIURL=http://139.59.33.178:4200
+VRT_PROJECT=c162b87d-c1d0-4348-a428-17ffb9c1e38b
+VRT_APIKEY=M9ZEMRAJT449JDKGQH7GX45HRBNG
+VRT_BRANCHNAME=develop-py
+```

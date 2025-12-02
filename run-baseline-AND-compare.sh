@@ -1,7 +1,7 @@
 function grant_exec_permissions() {
   cd ..
-  chmod -R a+x py-playwright-demo
-  cd py-playwright-demo/
+  chmod -R a+x py-vrt-playwright-english
+  cd py-vrt-playwright-english/
 }
 
 # ----------------------------- baseline ----------------------------- #
@@ -26,4 +26,4 @@ echo "compare >> Completed successfully!"
 echo "####################### COMPARE #######################"
 # ----------------------------- compare ----------------------------- #
 
-echo "e2e for Bookstore: https://vrt.yssofindia.org/e2e/py-playwright-demo/playwright-report/#"
+echo "e2e for Bookstore: https://vrt.yssofindia.org/e2e/py-vrt-playwright-english/playwright-report/#"
