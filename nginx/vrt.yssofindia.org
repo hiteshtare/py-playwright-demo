@@ -1,63 +1,12 @@
-
-##GridPane_Prometheus_vHost_Begin##
-#HTTPS#
-## Do not edit directly.
-## All changes will be lost.
-## Please use a location specific
-## include to customise your config
-
-include /var/www/vrt.yssofindia.org/nginx/*-http-context.conf;
-
 server {
     listen 80;
-    listen [::]:80;
- 
-    server_name vrt.yssofindia.org www.vrt.yssofindia.org;
- 
-     location / {
-        proxy_pass http://localhost:8080; # Forward requests to your Self-hosted VRT 
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection 'upgrade';
-        proxy_set_header Host $host;
-        proxy_cache_bypass $http_upgrade;
-    }
+    server_name _;
 
-    location /api/ {
-        proxy_pass http://localhost:4200; # Forward requests to your Self-hosted VRT 
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection 'upgrade';
-        proxy_set_header Host $host;
-        proxy_cache_bypass $http_upgrade;
-    }
-}
- 
-server {
-    listen 443 ssl http2;
-    listen [::]:443 ssl http2;
- 
-    server_name vrt.yssofindia.org www.vrt.yssofindia.org;
-
-    ssl_certificate /etc/letsencrypt/live/vrt.yssofindia.org/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/vrt.yssofindia.org/privkey.pem;
-    ssl_stapling_file /etc/nginx/ocsp/vrt.yssofindia.org.resp;
-    ssl_trusted_certificate /etc/letsencrypt/live/vrt.yssofindia.org/chain.pem;
-
-    access_log /var/log/nginx/vrt.yssofindia.org.access.log we_log;
-    error_log /var/log/nginx/vrt.yssofindia.org.error.log;
-    
     location / {
-        proxy_pass http://localhost:8080; # Forward requests to your k8s - eventapi-service 
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection 'upgrade';
-        proxy_set_header Host $host;
-        proxy_cache_bypass $http_upgrade;
-    }
-
-    location /api/ {
-        proxy_pass http://localhost:4200; # Forward requests to your Self-hosted VRT 
+	  limit_except GET HEAD {
+        	deny all;
+    	  }
+	  proxy_pass http://localhost:8080; # Forward requests to your Self-hosted VRT 
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';
@@ -65,6 +14,3 @@ server {
         proxy_cache_bypass $http_upgrade;
     }
 }
- 
-##GridPane_Prometheus_vHost_End##
-
