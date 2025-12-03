@@ -1,16 +1,21 @@
-server {
-    listen 80;
-    server_name _;
+server
+{
+	listen 80;
+    listen [::]:80;
+ 
+    server_name vrt.yssofindia.org www.vrt.yssofindia.org;
 
-    location / {
-	  limit_except GET HEAD {
-        	deny all;
-    	  }
-	  proxy_pass http://localhost:8080; # Forward requests to your Self-hosted VRT 
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection 'upgrade';
-        proxy_set_header Host $host;
-        proxy_cache_bypass $http_upgrade;
-    }
+	location /
+	{
+		limit_except GET HEAD
+		{
+			deny all;
+		}
+		proxy_pass http://localhost:8080; # Forward requests to your Self-hosted VRT
+		proxy_http_version 1.1;
+		proxy_set_header Upgrade $http_upgrade;
+		proxy_set_header Connection 'upgrade';
+		proxy_set_header Host $host;
+		proxy_cache_bypass $http_upgrade;
+	}
 }
